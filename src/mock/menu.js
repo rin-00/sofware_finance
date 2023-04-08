@@ -31,7 +31,7 @@ const presetList = [
     ]
   },
   {
-    id: 222,
+    id: 112,
     name: 'bilibili',
     title: 'B站',
     icon: 'BoldOutlined',
@@ -58,57 +58,24 @@ const presetList = [
     children: [
       {
         id: 11,
-        name: 'IFPUG',
-        title: 'IFPUG方法',
+        name: 'exp6_decision_tree',
+        title: '决策树实验',
         target: '_self',
-        path: '/exp1/ifpug',
-        component: '@/pages/exp1/Exp1_IFPUG/index.vue',
+        path: '/exp6/decision_tree',
+        component: '@/pages/exp6/Exp6_decision_tree',
         renderMenu: true,
         permission: null,
         cacheable: true,
-      },
-      {
-        id: 12,
-        name: 'NESMA',
-        title: 'NESMA方法',
-        target: '_self',
-        path: '/exp1/nesma',
-        component: '@/pages/exp1/Exp1_NESMA/index.vue',
-        renderMenu: true,
-        permission: null,
-        cacheable: true,
-      },
-      {
-        id: 13,
-        name: 'MARKII',
-        title: 'MARKII方法',
-        target: '_self',
-        path: '/exp1/markii',
-        component: '@/pages/exp1/Exp1_MARKII/index.vue',
-        renderMenu: true,
-        permission: null,
-        cacheable: true,
-      },
-      {
-        id: 14,
-        name: 'COSMIC',
-        title: 'IFPUG方法',
-        target: '_self',
-        path: '/exp1/cosmic',
-        component: '@/pages/exp1/Exp1_COSMIC/index.vue',
-        renderMenu: true,
-        permission: null,
-        cacheable: true,
-      },
+      }
     ]
   },
   {
     id: 2,
-    name: 'exp2',
+    name: 'exp1',
     title: '软件开发成本估算实验',
     target: '_self',
-    path: '/exp2',
-    component: '@/pages/exp2',
+    path: '/exp1',
+    component: '@/pages/exp1',
     renderMenu: true,
     parent: null,
     permission: null,
@@ -116,11 +83,11 @@ const presetList = [
     children: [
       {
         id: 21,
-        name: 'exp2_chengbengusuan',
-        title: '开发成本估算实验1',
+        name: 'exp6_decision_tree',
+        title: '决策树实验',
         target: '_self',
-        path: '/exp2/chengbengusuan',
-        component: '@/pages/exp6/Exp2_Chengbengusuan',
+        path: '/exp6/decision_tree',
+        component: '@/pages/exp6/Exp6_decision_tree',
         renderMenu: true,
         permission: null,
         cacheable: true,
@@ -197,7 +164,7 @@ Mock.mock('api/menu', 'get', ({}) => {
     }
   });
   return {
-    msg: 'success',
+    message: 'success',
     code: 0,
     data: menuList.filter((menu) => !menu.parent),
   };
@@ -208,7 +175,7 @@ Mock.mock('api/menu', 'put', ({ body }) => {
   saveMenu(menu);
   return {
     code: 0,
-    msg: 'success',
+    message: 'success',
   };
 });
 
@@ -217,7 +184,7 @@ Mock.mock('api/menu', 'post', ({ body }) => {
   saveMenu(menu);
   return {
     code: 0,
-    msg: 'success',
+    message: 'success',
   };
 });
 
@@ -229,7 +196,7 @@ Mock.mock('api/menu', 'delete', ({ body }) => {
   localStorage.setItem('stepin-menu', JSON.stringify(menuList));
   return {
     code: 0,
-    msg: 'success',
+    message: 'success',
     data: removed,
   };
 });

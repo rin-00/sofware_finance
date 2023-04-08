@@ -37,23 +37,16 @@
   import HeaderActions from './components/layout/HeaderActions.vue';
   import Setting from './components/setting/Setting.vue';
   import avatar from '@/assets/avatar.png';
-  import { userInfo } from 'os';
-import { onMounted } from 'vue';
 
   const { logout, profile } = useAccountStore();
   const { setAuthorities } = useAuthStore();
-  
-
-  // onMounted(()=>{console.log(1)}) 
 
   // 获取个人信息
   profile().then((response) => {
     const { permissions, account } = response;
-    console.log(account)
     setAuthorities(permissions);
-    user.name = account.name;
+    user.name = account.username;
     // user.avatar = account.avatar;
-    
   });
 
   const showSetting = ref(false);
@@ -64,7 +57,7 @@ import { onMounted } from 'vue';
   const { navigation, useTabs, theme, contentClass } = storeToRefs(useSettingStore());
 
   const user = reactive({
-    name: '',
+    name: 'admin',
     avatar: avatar,
     menuList: [
       // { title: '个人中心', key: 'personal', icon: 'UserOutlined', onClick: () => router.push('/profile') },
