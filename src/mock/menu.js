@@ -153,7 +153,19 @@ const presetList = [
     ]
 
   },
-  
+  {
+    id: 8,
+    name: 'exp8',
+    title: '软件项目/产品的财务评价实验',
+    target: '_self',
+    path: '/exp8',
+    component: '@/pages/exp8/Exp8.vue',
+    renderMenu: true,
+    parent: null,
+    permission: null,
+    cacheable: true,
+
+  },
 ];
 
 function getMenuList() {
