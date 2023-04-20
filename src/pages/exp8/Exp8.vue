@@ -233,19 +233,19 @@
             Index: [
               {
                 key: '6',
-                number: '1',
+                number: '6',
                 project: '净现值 NPY',
                 value: "",
               },
               {
                 key: '7',
-                number: '2',
+                number: '7',
                 project: '内部收益率 IRR',
                 value: "",
               },
               {
                 key: '8',
-                number: '3',
+                number: '8',
                 project: '动态投资回收期(年) DPP',
                 value: "",
               },
