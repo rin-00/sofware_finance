@@ -12,10 +12,63 @@
     </p>
     <h2>二、实验步骤</h2>
     <h3>1.前置输入</h3>
-    <p class="content">本实验中，独立项目的生命周期设定为____年</p>
+    <p class="content">本实验中，独立项目的生命周期设定为
+    <a-input-number id="inputNumber" v-model:value="year" :bordered="false" :min="1" :max="10" />
+    年</p>
     <h3>2.项目现金流入</h3>
     <p class="content">项目的现金流入包括独立方案的年收入，其中，独立方案是指各工程项目方案的现金流是独立的、不相关，而且任何一个方案的采用与否都不会对是否采纳其他方案的决策产生影响。例如:阿里集团的淘宝和闲鱼，分别投资开发各自平台新产品方案，如果选择某个方案，不会影响到另一个方案，则这两个方案就是独立方案。请按照下列表格填写项目每年的现金流入：</p>
-    <a-table :dataSource="Input" :columns="columns_1" />
+    <a-table :columns="columns_1" :data-source="Input">
+        <template #bodyCell="{ column,record,index}">
+            <template v-if="column.dataIndex === 'year0'">
+              <template v-if="record.project === '独立方案年收入'">
+                <a-input v-model:value="record.input0" style="width:100px;"/>
+              </template> 
+              <template v-if="record.project === '其他'">
+                <a-input v-model:value="record.other_input0" style="width:100px;"/>
+              </template>
+            </template>
+            <template v-if="column.dataIndex === 'year1'">
+              <template v-if="record.project === '独立方案年收入'">
+                <a-input v-model:value="record.input1" style="width:100px;"/>
+              </template>
+              <template v-if="record.project === '其他'">
+                <a-input v-model:value="record.other_input1" style="width:100px;"/>
+              </template> 
+            </template>
+            <template v-if="column.dataIndex === 'year2'">
+              <template v-if="record.project === '独立方案年收入'">
+                <a-input v-model:value="record.input2" style="width:100px;"/>
+              </template>
+              <template v-if="record.project === '其他'">
+                <a-input v-model:value="record.other_input2" style="width:100px;"/>
+              </template> 
+            </template>
+            <template v-if="column.dataIndex === 'year3'"> 
+              <template v-if="record.project === '独立方案年收入'">
+                <a-input v-model:value="record.input3" style="width:100px;"/>
+              </template>
+              <template v-if="record.project === '其他'">
+                <a-input v-model:value="record.other_input3" style="width:100px;"/>
+              </template> 
+            </template>
+            <template v-if="column.dataIndex === 'year4'">
+              <template v-if="record.project === '独立方案年收入'">
+                <a-input v-model:value="record.input4" style="width:100px;"/>
+              </template>
+              <template v-if="record.project === '其他'">
+                <a-input v-model:value="record.other_input4" style="width:100px;"/>
+              </template> 
+            </template>
+            <template v-if="column.dataIndex === 'year5'">
+              <template v-if="record.project === '独立方案年收入'">
+                <a-input v-model:value="record.input5" style="width:100px;"/>
+              </template>
+              <template v-if="record.project === '其他'">
+                <a-input v-model:value="record.other_input5" style="width:100px;"/>
+              </template> 
+            </template>
+        </template> 
+      </a-table>
     <h3>3.项目现金流出</h3>
     <p class="content">项目的现金流出包括直接人员成本、非直接人员成本、直接运维成本、非直接运维成本和其他。
                       直接人员成本指员工的直接所得：包括工资、奖金、加班费、红利、职务津贴、遣散补偿等。
@@ -25,7 +78,118 @@
   
     <p class="content">请按照下列表格填写项目每年的现金流出：
     </p>
-    <a-table :dataSource="Output" :columns="columns_1" />
+    <a-table :columns="columns_1" :data-source="Output">
+    <template #bodyCell="{ column, record, index }">
+      <template v-if="column.dataIndex === 'year0'">
+        <template v-if ="record.project === '直接人力成本'">
+          <a-input v-model:value="record.d_labour0" style="width:100px;" />
+        </template>
+        <template v-if="record.project === '间接人力成本'">
+          <a-input v-model:value="record.i_labour0" style="width:100px;" />
+        </template>
+        <template v-if="record.project === '直接运维成本'">
+          <a-input v-model:value="record.d_operation0" style="width:100px;" />
+        </template>
+        <template v-if="record.project === '间接运维成本'">
+          <a-input v-model:value="record.i_operation0" style="width:100px;" />
+        </template>
+        <template v-if="record.project === '其他'">
+          <a-input v-model:value="record.other0" style="width:100px;" />
+        </template>
+      </template>
+
+      <template v-if="column.dataIndex === 'year1'">
+        <template v-if="record.project === '直接人力成本'">
+          <a-input v-model:value="record.d_labour1" style="width:100px;" />
+        </template>
+        <template v-if="record.project === '间接人力成本'">
+          <a-input v-model:value="record.i_labour1" style="width:100px;" />
+        </template>
+        <template v-if="record.project === '直接运维成本'">
+          <a-input v-model:value="record.d_operation1" style="width:100px;" />
+        </template>
+        <template v-if="record.project === '间接运维成本'">
+          <a-input v-model:value="record.i_operation1" style="width:100px;" />
+        </template>
+        <template v-if="record.project === '其他'">
+          <a-input v-model:value="record.other1" style="width:100px;" />
+        </template>
+      </template>
+
+      <template v-if="column.dataIndex === 'year2'">
+        <template v-if="record.project === '直接人力成本'">
+          <a-input v-model:value="record.d_labour2" style="width:100px;" />
+        </template>
+        <template v-if="record.project === '间接人力成本'">
+          <a-input v-model:value="record.i_labour2" style="width:100px;" />
+        </template>
+        <template v-if="record.project === '直接运维成本'">
+          <a-input v-model:value="record.d_operation2" style="width:100px;" />
+        </template>
+        <template v-if="record.project === '间接运维成本'">
+          <a-input v-model:value="record.i_labour2" style="width:100px;" />
+        </template>
+        <template v-if="record.project === '其他'">
+          <a-input v-model:value="record.other2" style="width:100px;" />
+        </template>
+      </template>
+
+      <template v-if="column.dataIndex === 'year3'">
+        <template v-if="record.project === '直接人力成本'">
+          <a-input v-model:value="record.d_labour3" style="width:100px;" />
+        </template>
+        <template v-if="record.project === '间接人力成本'">
+          <a-input v-model:value="record.i_labour3" style="width:100px;" />
+        </template>
+        <template v-if="record.project === '直接运维成本'">
+          <a-input v-model:value="record.d_operation3" style="width:100px;" />
+        </template>
+        <template v-if="record.project === '间接运维成本'">
+          <a-input v-model:value="record.i_operation3" style="width:100px;" />
+        </template>
+        <template v-if="record.project === '其他'">
+          <a-input v-model:value="record.other3" style="width:100px;" />
+        </template>
+      </template>
+
+      <template v-if="column.dataIndex === 'year4'">
+        <template v-if="record.project === '直接人力成本'">
+          <a-input v-model:value="record.d_labour4" style="width:100px;" />
+        </template>
+        <template v-if="record.project === '间接人力成本'">
+          <a-input v-model:value="record.i_labour4" style="width:100px;" />
+        </template>
+        <template v-if="record.project === '直接运维成本'">
+          <a-input v-model:value="record.d_operation4" style="width:100px;" />
+        </template>
+        <template v-if="record.project === '间接运维成本'">
+          <a-input v-model:value="record.i_operation4" style="width:100px;" />
+        </template>
+        <template v-if="record.project === '其他'">
+          <a-input v-model:value="record.other4" style="width:100px;" />
+        </template>
+      </template>
+
+      <template v-if="column.dataIndex === 'year5'">
+        <template v-if="record.project === '直接人力成本'">
+          <a-input v-model:value="record.d_labour5" style="width:100px;" />
+        </template>
+        <template v-if="record.project === '间接人力成本'">
+          <a-input v-model:value="record.i_labour5" style="width:100px;" />
+        </template>
+        <template v-if="record.project === '直接运维成本'">
+          <a-input v-model:value="record.d_operation5" style="width:100px;" />
+        </template>
+        <template v-if="record.project === '间接运维成本'">
+          <a-input v-model:value="record.i_operation5" style="width:100px;" />
+        </template>
+        <template v-if="record.project === '其他'">
+          <a-input v-model:value="record.other5" style="width:100px;" />
+        </template>
+      </template>
+
+    </template>
+  </a-table>
     <h3>4.项目净现金流量</h3>
     <p class="content">根据1和2中得到的现金流入和现金流出计算净现金流量和累计净现金流量；</p>
     <p class="content">净现金流量是现金流量表中的一个指标，是指一定时期内，现金及现金等价物的流入（收入）减去流出（支出）的余额（净收入或净支出），反映了企业本期内净增加或净减少的现金及现金等价数额。</p>
@@ -33,8 +197,62 @@
     <p class="content">根据当年的现值系数计算净现金流量（现值）和累计净现金流量（现值）。
   净现金流量现值为现金流入扣除现金流出的净额按照一定的折现率折现至评估时点的现值，净现金流量总现值是指未来各期现金净流量的现值之和，即未来现金流入现值与未来现金流出现值差额，也称为净现值。
   </p>
-  <p class="formula">第n年的净现金流量现值=第n年的净现金流量÷（1+折现率）^n</p>
-    <a-table :dataSource="netCashFlow" :columns="columns_1" />
+  <p class="formula">第n年的净现金流量现值=第n年的净现金流量×现值系数  </p>
+    <a-table :columns="columns_1" :data-source="netCashFlow">
+        <template #bodyCell="{ column,record,index}">
+            <template v-if="column.dataIndex === 'year0'">
+              <template v-if="record.project === '净现金流量'">
+                <a-input v-model:value="record.F0" style="width:100px;"/>
+              </template> 
+              <template v-if="record.project === '净现金流量(现值)'">
+                <a-input v-model:value="record.P0" style="width:100px;"/>
+              </template> 
+            </template>
+            <template v-if="column.dataIndex === 'year1'">
+              <template v-if="record.project === '净现金流量'">
+                <a-input v-model:value="record.F1" style="width:100px;"/>
+              </template> 
+              <template v-if="record.project === '净现金流量(现值)'">
+                <a-input v-model:value="record.P1" style="width:100px;"/>
+              </template> 
+            </template>
+            <template v-if="column.dataIndex === 'year2'">
+              <template v-if="record.project === '净现金流量'">
+                <a-input v-model:value="record.F2" style="width:100px;"/>
+              </template> 
+              <template v-if="record.project === '净现金流量(现值)'">
+                <a-input v-model:value="record.P2" style="width:100px;"/>
+              </template> 
+            </template>
+
+            <template v-if="column.dataIndex === 'year3'">
+              <template v-if="record.project === '净现金流量'">
+                <a-input v-model:value="record.F3" style="width:100px;"/>
+              </template> 
+              <template v-if="record.project === '净现金流量(现值)'">
+                <a-input v-model:value="record.P3" style="width:100px;"/>
+              </template> 
+            </template>
+
+            <template v-if="column.dataIndex === 'year4'">
+              <template v-if="record.project === '净现金流量'">
+                <a-input v-model:value="record.F4" style="width:100px;"/>
+              </template> 
+              <template v-if="record.project === '净现金流量(现值)'">
+                <a-input v-model:value="record.P4" style="width:100px;"/>
+              </template> 
+            </template>
+
+            <template v-if="column.dataIndex === 'year5'">
+              <template v-if="record.project === '净现金流量'">
+                <a-input v-model:value="record.F5" style="width:100px;"/>
+              </template> 
+              <template v-if="record.project === '净现金流量(现值)'">
+                <a-input v-model:value="record.P5" style="width:100px;"/>
+              </template> 
+            </template>
+        </template> 
+    </a-table>
     <h3>5.项目指标</h3>
     <p class="content">根据所提取的财务评价所需基础数据进行项目财务分析，重在考察项目盈利能力是否能够满足要求。编制项目资本金现金流量表，计算项目资本金财务内部收益率IRR、净现值NPV以及动态投资回收期（年），考察项目资本金可获得的收益水平。
     </p>
@@ -52,10 +270,17 @@
   </template>
     
     <script lang="ts">
-      export default {
+      import { defineComponent, ref } from 'vue';
+       export default{
         name: 'Exp8',
         setup() {
+          const year = ref<number>(5);
           return {
+            year,
+          }
+        },
+          data(){
+            return {
             Input: [
               {
                 key: '1',
@@ -66,8 +291,7 @@
                 year2: 500,
                 year3: 500,
                 year4: 500,
-                year5: 500,
-                year6: 500,
+                year5: 500,                  
               },
               {
                 key: '2',
@@ -78,8 +302,7 @@
                 year2: 500,
                 year3: 500,
                 year4: 500,
-                year5: 500,
-                year6: 500,
+                year5: 500,                 
               },
               {
                 key: '2',
@@ -90,8 +313,7 @@
                 year2: "",
                 year3: "",
                 year4: "",
-                year5: "",
-                year6: "",
+                year5: "",                 
               },
             ],
             Output: [
@@ -104,8 +326,7 @@
                 year2: 320,
                 year3: 330,
                 year4: 340,
-                year5: 350,
-                year6: 360,
+                year5: 350,                 
               },
               {
                 key: '2',
@@ -116,8 +337,7 @@
                 year2: "",
                 year3: "",
                 year4: "",
-                year5: "",
-                year6: "",
+                year5: "",                  
               },
               {
                 key: '3',
@@ -128,8 +348,7 @@
                 year2: "",
                 year3: "",
                 year4: "",
-                year5: "",
-                year6: "",
+                year5: "",                 
               },
               {
                 key: '4',
@@ -140,8 +359,7 @@
                 year2: "",
                 year3: "",
                 year4: "",
-                year5: "",
-                year6: "",
+                year5: "",                 
               },
               {
                 key: '5',
@@ -152,8 +370,7 @@
                 year2: "",
                 year3: "",
                 year4: "",
-                year5: "",
-                year6: "",
+                year5: "",               
               },
               {
                 key: '6',
@@ -164,8 +381,7 @@
                 year2: "",
                 year3: "",
                 year4: "",
-                year5: "",
-                year6: "",
+                year5: "",               
               },
             ],
             netCashFlow:[
@@ -178,8 +394,7 @@
                 year2: "",
                 year3: "",
                 year4: "",
-                year5: "",
-                year6: "",
+                year5: "",                  
               },
               {
                 key: '3',
@@ -190,8 +405,7 @@
                 year2: "",
                 year3: "",
                 year4: "",
-                year5: "",
-                year6: "",
+                year5: "",                  
               },
               {
                 key: '4',
@@ -203,7 +417,6 @@
                 year3: "",
                 year4: "",
                 year5: "",
-                year6: "",
               },
               {
                 key: '4',
@@ -215,37 +428,35 @@
                 year3: "",
                 year4: "",
                 year5: "",
-                year6: "",
               },
               {
                 key: '5',
                 number: '5',
                 project: '现值系数',
-                year0: "",
-                year1: "",
-                year2: "",
-                year3: "",
-                year4: "",
-                year5: "",
-                year6: "",
+                year0: "1.00",
+                year1: "0.9091",
+                year2: "0.8264",
+                year3: "0.7513",
+                year4: "0.683",
+                year5: "0.6209",
               },
             ],
             Index: [
               {
                 key: '6',
-                number: '6',
+                number: '1',
                 project: '净现值 NPY',
                 value: "",
               },
               {
                 key: '7',
-                number: '7',
+                number: '2',
                 project: '内部收益率 IRR',
                 value: "",
               },
               {
                 key: '8',
-                number: '8',
+                number: '3',
                 project: '动态投资回收期(年) DPP',
                 value: "",
               },
@@ -291,11 +502,6 @@
                 dataIndex: 'year5',
                 key: '5',
               },
-              {
-                title: '6',
-                dataIndex: 'year6',
-                key: '6',
-              },
             ],
               columns_2: [
               {
@@ -316,7 +522,7 @@
             ]
           };
         },
-    };
+      }
   
     </script>
     
