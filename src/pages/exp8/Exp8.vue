@@ -20,51 +20,54 @@
     <a-table :columns="columns_1" :data-source="Input">
         <template #bodyCell="{ column,record,index}">
             <template v-if="column.dataIndex === 'year0'">
+              <template v-if="record.project === '现金流入'">
+                {{ year0(index)}}
+              </template> 
               <template v-if="record.project === '独立方案年收入'">
-                <a-input v-model:value="record.input0" style="width:100px;"/>
+                <a-input v-model:value="record.year0" style="width:100px;"/>
               </template> 
               <template v-if="record.project === '其他'">
-                <a-input v-model:value="record.other_input0" style="width:100px;"/>
+                <a-input v-model:value="record.year0" style="width:100px;"/>
               </template>
             </template>
             <template v-if="column.dataIndex === 'year1'">
               <template v-if="record.project === '独立方案年收入'">
-                <a-input v-model:value="record.input1" style="width:100px;"/>
+                <a-input v-model:value="record.year1" style="width:100px;"/>
               </template>
               <template v-if="record.project === '其他'">
-                <a-input v-model:value="record.other_input1" style="width:100px;"/>
+                <a-input v-model:value="record.year1" style="width:100px;"/>
               </template> 
             </template>
             <template v-if="column.dataIndex === 'year2'">
               <template v-if="record.project === '独立方案年收入'">
-                <a-input v-model:value="record.input2" style="width:100px;"/>
+                <a-input v-model:value="record.year2" style="width:100px;"/>
               </template>
               <template v-if="record.project === '其他'">
-                <a-input v-model:value="record.other_input2" style="width:100px;"/>
+                <a-input v-model:value="record.year2" style="width:100px;"/>
               </template> 
             </template>
             <template v-if="column.dataIndex === 'year3'"> 
               <template v-if="record.project === '独立方案年收入'">
-                <a-input v-model:value="record.input3" style="width:100px;"/>
+                <a-input v-model:value="record.year3" style="width:100px;"/>
               </template>
               <template v-if="record.project === '其他'">
-                <a-input v-model:value="record.other_input3" style="width:100px;"/>
+                <a-input v-model:value="record.year3" style="width:100px;"/>
               </template> 
             </template>
             <template v-if="column.dataIndex === 'year4'">
               <template v-if="record.project === '独立方案年收入'">
-                <a-input v-model:value="record.input4" style="width:100px;"/>
+                <a-input v-model:value="record.year4" style="width:100px;"/>
               </template>
               <template v-if="record.project === '其他'">
-                <a-input v-model:value="record.other_input4" style="width:100px;"/>
+                <a-input v-model:value="record.year4" style="width:100px;"/>
               </template> 
             </template>
             <template v-if="column.dataIndex === 'year5'">
               <template v-if="record.project === '独立方案年收入'">
-                <a-input v-model:value="record.input5" style="width:100px;"/>
+                <a-input v-model:value="record.year5" style="width:100px;"/>
               </template>
               <template v-if="record.project === '其他'">
-                <a-input v-model:value="record.other_input5" style="width:100px;"/>
+                <a-input v-model:value="record.year5" style="width:100px;"/>
               </template> 
             </template>
         </template> 
@@ -286,23 +289,23 @@
                 key: '1',
                 number: '1',
                 project: '现金流入',
-                year0: 500,
-                year1: 500,
-                year2: 500,
-                year3: 500,
-                year4: 500,
-                year5: 500,                  
+                year0: "",
+                year1: "",
+                year2: "",
+                year3: "",
+                year4: "",
+                year5: "",                   
               },
               {
                 key: '2',
                 number: '1.1',
                 project: '独立方案年收入',
-                year0: 500,
-                year1: 500,
-                year2: 500,
-                year3: 500,
-                year4: 500,
-                year5: 500,                 
+                year0: "",
+                year1: "",
+                year2: "",
+                year3: "",
+                year4: "",
+                year5: "",                 
               },
               {
                 key: '2',
@@ -522,6 +525,16 @@
             ]
           };
         },
+        computed:{
+          year0(){
+            return function(index)
+            {
+              this.Input[index].year0=parseInt(this.Input[index+1].year0)+parseInt(this.Input[index+2].year0)
+              return this.Input[index].year0
+            }
+
+          }
+        }
       }
   
     </script>
