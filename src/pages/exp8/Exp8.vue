@@ -17,11 +17,11 @@
     年</p>
     <h3>2.项目现金流入</h3>
     <p class="content">项目的现金流入包括独立方案的年收入，其中，独立方案是指各工程项目方案的现金流是独立的、不相关，而且任何一个方案的采用与否都不会对是否采纳其他方案的决策产生影响。例如:阿里集团的淘宝和闲鱼，分别投资开发各自平台新产品方案，如果选择某个方案，不会影响到另一个方案，则这两个方案就是独立方案。请按照下列表格填写项目每年的现金流入：</p>
-    <a-table :columns="columns_1" :data-source="Input">
+    <a-table :columns="columns_1" :data-source="Input" bordered size="middle" style="word-break: break-all;">
         <template #bodyCell="{ column,record,index}">
             <template v-if="column.dataIndex === 'year0'">
               <template v-if="record.project === '现金流入'">
-                {{ year0(index)}}
+                {{c(index,0)}}
               </template> 
               <template v-if="record.project === '独立方案年收入'">
                 <a-input v-model:value="record.year0" style="width:100px;"/>
@@ -31,6 +31,9 @@
               </template>
             </template>
             <template v-if="column.dataIndex === 'year1'">
+              <template v-if="record.project === '现金流入'">
+                {{c(index,1)}}
+              </template> 
               <template v-if="record.project === '独立方案年收入'">
                 <a-input v-model:value="record.year1" style="width:100px;"/>
               </template>
@@ -39,6 +42,9 @@
               </template> 
             </template>
             <template v-if="column.dataIndex === 'year2'">
+              <template v-if="record.project === '现金流入'">
+                {{c(index,2)}}
+              </template> 
               <template v-if="record.project === '独立方案年收入'">
                 <a-input v-model:value="record.year2" style="width:100px;"/>
               </template>
@@ -46,7 +52,10 @@
                 <a-input v-model:value="record.year2" style="width:100px;"/>
               </template> 
             </template>
-            <template v-if="column.dataIndex === 'year3'"> 
+            <template v-if="column.dataIndex === 'year3'">
+              <template v-if="record.project === '现金流入'">
+                {{c(index,3)}}
+              </template> 
               <template v-if="record.project === '独立方案年收入'">
                 <a-input v-model:value="record.year3" style="width:100px;"/>
               </template>
@@ -55,6 +64,9 @@
               </template> 
             </template>
             <template v-if="column.dataIndex === 'year4'">
+              <template v-if="record.project === '现金流入'">
+                {{c(index,4)}}
+              </template> 
               <template v-if="record.project === '独立方案年收入'">
                 <a-input v-model:value="record.year4" style="width:100px;"/>
               </template>
@@ -63,6 +75,9 @@
               </template> 
             </template>
             <template v-if="column.dataIndex === 'year5'">
+              <template v-if="record.project === '现金流入'">
+                {{c(index,5)}}
+              </template> 
               <template v-if="record.project === '独立方案年收入'">
                 <a-input v-model:value="record.year5" style="width:100px;"/>
               </template>
@@ -71,7 +86,7 @@
               </template> 
             </template>
         </template> 
-      </a-table>
+    </a-table>
     <h3>3.项目现金流出</h3>
     <p class="content">项目的现金流出包括直接人员成本、非直接人员成本、直接运维成本、非直接运维成本和其他。
                       直接人员成本指员工的直接所得：包括工资、奖金、加班费、红利、职务津贴、遣散补偿等。
@@ -526,16 +541,41 @@
           };
         },
         computed:{
-          year0(){
-            return function(index)
+          c(){
+            return function(index,year)
             {
-              this.Input[index].year0=parseInt(this.Input[index+1].year0)+parseInt(this.Input[index+2].year0)
-              return this.Input[index].year0
+              switch (year){
+                case 0:
+                  var total = parseInt(this.Input[index+1].year0)+parseInt(this.Input[index+2].year0)
+                  this.Input[index].year0 = total?total:0
+                  return this.Input[index].year0
+                case 1:
+                  var total = parseInt(this.Input[index+1].year1)+parseInt(this.Input[index+2].year1)
+                  this.Input[index].year1 = total?total:0
+                  return this.Input[index].year1
+                case 2:
+                  var total = parseInt(this.Input[index+1].year2)+parseInt(this.Input[index+2].year2)
+                  this.Input[index].year2 = total?total:0
+                  return this.Input[index].year2
+                case 3:
+                  var total = parseInt(this.Input[index+1].year3)+parseInt(this.Input[index+2].year3)
+                  this.Input[index].year3 = total?total:0
+                  return this.Input[index].year3
+                case 4:
+                  var total = parseInt(this.Input[index+1].year4)+parseInt(this.Input[index+2].year4)
+                  this.Input[index].year4 = total?total:0
+                  return this.Input[index].year4
+                case 5:
+                  var total = parseInt(this.Input[index+1].year5)+parseInt(this.Input[index+2].year5)
+                  this.Input[index].year5 = total?total:0
+                  return this.Input[index].year5
+                default:
+                  break
+              }
             }
-
+          },
           }
         }
-      }
   
     </script>
     
