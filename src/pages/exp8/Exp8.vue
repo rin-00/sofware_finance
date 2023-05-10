@@ -190,7 +190,7 @@
 
       <template v-if="column.dataIndex === 'year5'">
         <template v-if="record.project === '直接人力成本'">
-          <a-input v-model:value="record.d_labour5" style="width:100px;" />
+          <a-input v-model:value="record.year5" style="width:100px;" />
         </template>
         <template v-if="record.project === '间接人力成本'">
           <a-input v-model:value="record.i_labour5" style="width:100px;" />
@@ -220,53 +220,53 @@
         <template #bodyCell="{ column,record,index}">
             <template v-if="column.dataIndex === 'year0'">
               <template v-if="record.project === '净现金流量'">
-                <a-input v-model:value="record.F0" style="width:100px;"/>
+                <a-input v-model:value="record.year0" style="width:100px;"/>
               </template> 
               <template v-if="record.project === '净现金流量(现值)'">
-                <a-input v-model:value="record.P0" style="width:100px;"/>
+                <a-input v-model:value="record.year0" style="width:100px;"/>
               </template> 
             </template>
             <template v-if="column.dataIndex === 'year1'">
               <template v-if="record.project === '净现金流量'">
-                <a-input v-model:value="record.F1" style="width:100px;"/>
+                <a-input v-model:value="record.year1" style="width:100px;"/>
               </template> 
               <template v-if="record.project === '净现金流量(现值)'">
-                <a-input v-model:value="record.P1" style="width:100px;"/>
+                <a-input v-model:value="record.year1" style="width:100px;"/>
               </template> 
             </template>
             <template v-if="column.dataIndex === 'year2'">
               <template v-if="record.project === '净现金流量'">
-                <a-input v-model:value="record.F2" style="width:100px;"/>
+                <a-input v-model:value="record.year2" style="width:100px;"/>
               </template> 
               <template v-if="record.project === '净现金流量(现值)'">
-                <a-input v-model:value="record.P2" style="width:100px;"/>
+                <a-input v-model:value="record.year2" style="width:100px;"/>
               </template> 
             </template>
 
             <template v-if="column.dataIndex === 'year3'">
               <template v-if="record.project === '净现金流量'">
-                <a-input v-model:value="record.F3" style="width:100px;"/>
+                <a-input v-model:value="record.year3" style="width:100px;"/>
               </template> 
               <template v-if="record.project === '净现金流量(现值)'">
-                <a-input v-model:value="record.P3" style="width:100px;"/>
+                <a-input v-model:value="record.year3" style="width:100px;"/>
               </template> 
             </template>
 
             <template v-if="column.dataIndex === 'year4'">
               <template v-if="record.project === '净现金流量'">
-                <a-input v-model:value="record.F4" style="width:100px;"/>
+                <a-input v-model:value="record.year4" style="width:100px;"/>
               </template> 
               <template v-if="record.project === '净现金流量(现值)'">
-                <a-input v-model:value="record.P4" style="width:100px;"/>
+                <a-input v-model:value="record.year4" style="width:100px;"/>
               </template> 
             </template>
 
             <template v-if="column.dataIndex === 'year5'">
               <template v-if="record.project === '净现金流量'">
-                <a-input v-model:value="record.F5" style="width:100px;"/>
+                <a-input v-model:value="record.year5" style="width:100px;"/>
               </template> 
               <template v-if="record.project === '净现金流量(现值)'">
-                <a-input v-model:value="record.P5" style="width:100px;"/>
+                <a-input v-model:value="record.year5" style="width:100px;"/>
               </template> 
             </template>
         </template> 
@@ -281,7 +281,21 @@
     <p class="content">3. 动态投资回收期（年）是指按照设定的基准收益率ic回收全部投资所需的时间,公式如下：</p>
     <p class="content">其中，DPP为动态投资回收期、（CI-CO）t为第t年净现金流量，ic为设定的基准收益率。</p>
     <p class="content">根据计算，本项目的财务指标如下</p>
-    <a-table :dataSource="Index" :columns="columns_2" />
+    <a-table :dataSource="Index" :columns="columns_2" >
+        <template #bodyCell="{column,record,index}">
+          <template v-if="column.dataIndex === 'value'">
+            <template v-if="record.key === '6'">
+                {{npv()}}
+            </template>
+            <template v-if="record.key === '7'">
+                {{ irr() }}
+            </template>
+            <template v-if="record.key === '8'">
+                {{ dpp() }}
+            </template>
+          </template>
+        </template>
+    </a-table>
     <p class="content">根据上述步骤，汇总编制出的项目资本金现金流量表，计算出的项目资本金财务内部收益率IRR、净现值NPV以及动态投资回收期（年），考察项目资本金可获得的收益水平，综合判断项目的财务状况，并且做出评价。
     </p>
   
@@ -463,20 +477,20 @@
               {
                 key: '6',
                 number: '1',
-                project: '净现值 NPY',
-                value: "",
+                project: '净现值 NPV',
+                value: "0",
               },
               {
                 key: '7',
                 number: '2',
                 project: '内部收益率 IRR',
-                value: "",
+                value: "0",
               },
               {
                 key: '8',
                 number: '3',
                 project: '动态投资回收期(年) DPP',
-                value: "",
+                value: "0",
               },
             ],  
             columns_1: [
@@ -521,7 +535,7 @@
                 key: '5',
               },
             ],
-              columns_2: [
+            columns_2: [
               {
                 title: '序号',
                 dataIndex: 'number',
@@ -546,8 +560,8 @@
             {
               switch (year){
                 case 0:
-                  var total = parseInt(this.Input[index+1].year0)+parseInt(this.Input[index+2].year0)
-                  this.Input[index].year0 = total?total:0
+                  this.Input[index].year0 = (parseInt(this.Input[index+1].year0)? parseInt(this.Input[index+1].year0):0) + 
+                                            (parseInt(this.Input[index+2].year0)? parseInt(this.Input[index+2].year0):0)
                   return this.Input[index].year0
                 case 1:
                   var total = parseInt(this.Input[index+1].year1)+parseInt(this.Input[index+2].year1)
@@ -574,11 +588,42 @@
               }
             }
           },
-          }
+          npv(){
+            return function()
+            {
+                const cashFlow = [0,0,0,0,0,0]
+                  cashFlow[0] = parseInt(this.netCashFlow[0].year0) ? parseInt(this.netCashFlow[0].year0):0
+                  cashFlow[1] = parseInt(this.netCashFlow[0].year1) ? parseInt(this.netCashFlow[0].year1):0
+                  cashFlow[2] = parseInt(this.netCashFlow[0].year2) ? parseInt(this.netCashFlow[0].year2):0
+                  cashFlow[3] = parseInt(this.netCashFlow[0].year3) ? parseInt(this.netCashFlow[0].year3):0
+                  cashFlow[4] = parseInt(this.netCashFlow[0].year4) ? parseInt(this.netCashFlow[0].year4):0
+                  cashFlow[5] = parseInt(this.netCashFlow[0].year5) ? parseInt(this.netCashFlow[0].year5):0
+                var discountRate = 0.1
+                var npv = 0
+                for(var t = 0; t <= 5; t++)
+                  npv += cashFlow[t] / Math.pow(1 + discountRate, t);
+                this.Index[0].value = npv.toFixed(2)
+                return this.Index[0].value 
+            }
+          },
+          irr(){
+            return function()
+            {
+              return this.Index[1].value = 0
+            }
+          },
+          dpp(){
+            return function()
+            {
+              return this.Index[2].value = 0
+            }
+          },
+          },
+        methods:{
+
         }
-  
+        }
     </script>
-    
     <style scoped lang="less">
     .title{
       text-align:center;
