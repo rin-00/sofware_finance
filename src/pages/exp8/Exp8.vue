@@ -97,94 +97,94 @@
     <p class="content">请按照下列表格填写项目每年的现金流出：
     </p>
     <a-table :columns="columns_1" :data-source="Output">
-    <template #bodyCell="{ column, record, index }">
+      <template #bodyCell="{ column, record, index }">
       <template v-if="column.dataIndex === 'year0'">
-        <template v-if ="record.project === '直接人力成本'">
-          <a-input v-model:value="record.d_labour0" style="width:100px;" />
+        <template v-if="record.project === '直接人力成本'">
+          <a-input v-model:value="record.year0" style="width:100px;" />
         </template>
         <template v-if="record.project === '间接人力成本'">
-          <a-input v-model:value="record.i_labour0" style="width:100px;" />
+          <a-input v-model:value="record.year0" style="width:100px;" />
         </template>
         <template v-if="record.project === '直接运维成本'">
-          <a-input v-model:value="record.d_operation0" style="width:100px;" />
+          <a-input v-model:value="record.year0" style="width:100px;" />
         </template>
         <template v-if="record.project === '间接运维成本'">
-          <a-input v-model:value="record.i_operation0" style="width:100px;" />
+          <a-input v-model:value="record.year0" style="width:100px;" />
         </template>
         <template v-if="record.project === '其他'">
-          <a-input v-model:value="record.other0" style="width:100px;" />
+          <a-input v-model:value="record.year0" style="width:100px;" />
         </template>
       </template>
 
       <template v-if="column.dataIndex === 'year1'">
         <template v-if="record.project === '直接人力成本'">
-          <a-input v-model:value="record.d_labour1" style="width:100px;" />
+          <a-input v-model:value="record.year1" style="width:100px;" />
         </template>
         <template v-if="record.project === '间接人力成本'">
-          <a-input v-model:value="record.i_labour1" style="width:100px;" />
+          <a-input v-model:value="record.year1" style="width:100px;" />
         </template>
         <template v-if="record.project === '直接运维成本'">
-          <a-input v-model:value="record.d_operation1" style="width:100px;" />
+          <a-input v-model:value="record.year1" style="width:100px;" />
         </template>
         <template v-if="record.project === '间接运维成本'">
-          <a-input v-model:value="record.i_operation1" style="width:100px;" />
+          <a-input v-model:value="record.year1" style="width:100px;" />
         </template>
         <template v-if="record.project === '其他'">
-          <a-input v-model:value="record.other1" style="width:100px;" />
+          <a-input v-model:value="record.year1" style="width:100px;" />
         </template>
       </template>
 
       <template v-if="column.dataIndex === 'year2'">
         <template v-if="record.project === '直接人力成本'">
-          <a-input v-model:value="record.d_labour2" style="width:100px;" />
+          <a-input v-model:value="record.year2" style="width:100px;" />
         </template>
         <template v-if="record.project === '间接人力成本'">
-          <a-input v-model:value="record.i_labour2" style="width:100px;" />
+          <a-input v-model:value="record.year2" style="width:100px;" />
         </template>
         <template v-if="record.project === '直接运维成本'">
-          <a-input v-model:value="record.d_operation2" style="width:100px;" />
+          <a-input v-model:value="record.year2" style="width:100px;" />
         </template>
         <template v-if="record.project === '间接运维成本'">
-          <a-input v-model:value="record.i_labour2" style="width:100px;" />
+          <a-input v-model:value="record.year2" style="width:100px;" />
         </template>
         <template v-if="record.project === '其他'">
-          <a-input v-model:value="record.other2" style="width:100px;" />
+          <a-input v-model:value="record.year2" style="width:100px;" />
         </template>
       </template>
 
       <template v-if="column.dataIndex === 'year3'">
         <template v-if="record.project === '直接人力成本'">
-          <a-input v-model:value="record.d_labour3" style="width:100px;" />
+          <a-input v-model:value="record.year3" style="width:100px;" />
         </template>
         <template v-if="record.project === '间接人力成本'">
-          <a-input v-model:value="record.i_labour3" style="width:100px;" />
+          <a-input v-model:value="record.year3" style="width:100px;" />
         </template>
         <template v-if="record.project === '直接运维成本'">
-          <a-input v-model:value="record.d_operation3" style="width:100px;" />
+          <a-input v-model:value="record.year3" style="width:100px;" />
         </template>
         <template v-if="record.project === '间接运维成本'">
-          <a-input v-model:value="record.i_operation3" style="width:100px;" />
+          <a-input v-model:value="record.year3" style="width:100px;" />
         </template>
         <template v-if="record.project === '其他'">
-          <a-input v-model:value="record.other3" style="width:100px;" />
+          <a-input v-model:value="record.year3" style="width:100px;" />
         </template>
       </template>
 
       <template v-if="column.dataIndex === 'year4'">
         <template v-if="record.project === '直接人力成本'">
-          <a-input v-model:value="record.d_labour4" style="width:100px;" />
+          <a-input v-model:value="record.year4" style="width:100px;" />
         </template>
         <template v-if="record.project === '间接人力成本'">
-          <a-input v-model:value="record.i_labour4" style="width:100px;" />
+          <a-input v-model:value="record.year4" style="width:100px;" />
         </template>
         <template v-if="record.project === '直接运维成本'">
-          <a-input v-model:value="record.d_operation4" style="width:100px;" />
+          <a-input v-model:value="record.year4" style="width:100px;" />
         </template>
         <template v-if="record.project === '间接运维成本'">
-          <a-input v-model:value="record.i_operation4" style="width:100px;" />
+          <a-input v-model:value="record.year4" style="width:100px;" />
         </template>
         <template v-if="record.project === '其他'">
-          <a-input v-model:value="record.other4" style="width:100px;" />
+          <a-input v-model:value="record.year4" style="width:100px;" />
         </template>
       </template>
 
@@ -193,16 +193,16 @@
           <a-input v-model:value="record.year5" style="width:100px;" />
         </template>
         <template v-if="record.project === '间接人力成本'">
-          <a-input v-model:value="record.i_labour5" style="width:100px;" />
+          <a-input v-model:value="record.year5" style="width:100px;" />
         </template>
         <template v-if="record.project === '直接运维成本'">
-          <a-input v-model:value="record.d_operation5" style="width:100px;" />
+          <a-input v-model:value="record.year5" style="width:100px;" />
         </template>
         <template v-if="record.project === '间接运维成本'">
-          <a-input v-model:value="record.i_operation5" style="width:100px;" />
+          <a-input v-model:value="record.year5" style="width:100px;" />
         </template>
         <template v-if="record.project === '其他'">
-          <a-input v-model:value="record.other5" style="width:100px;" />
+          <a-input v-model:value="record.year5" style="width:100px;" />
         </template>
       </template>
 
@@ -353,12 +353,12 @@
                 key: '1',
                 number: '2',
                 project: '现金流出',
-                year0: 300,
-                year1: 310,
-                year2: 320,
-                year3: 330,
-                year4: 340,
-                year5: 350,                 
+                year0: "",
+                year1: "",
+                year2: "",
+                year3: "",
+                year4: "",
+                year5: "",                 
               },
               {
                 key: '2',
@@ -598,12 +598,12 @@
             return function()
             {
                 const cashFlow = [0,0,0,0,0,0]
-                  cashFlow[0] = parseInt(this.netCashFlow[0].year0) ? parseInt(this.netCashFlow[0].year0):0
-                  cashFlow[1] = parseInt(this.netCashFlow[0].year1) ? parseInt(this.netCashFlow[0].year1):0
-                  cashFlow[2] = parseInt(this.netCashFlow[0].year2) ? parseInt(this.netCashFlow[0].year2):0
-                  cashFlow[3] = parseInt(this.netCashFlow[0].year3) ? parseInt(this.netCashFlow[0].year3):0
-                  cashFlow[4] = parseInt(this.netCashFlow[0].year4) ? parseInt(this.netCashFlow[0].year4):0
-                  cashFlow[5] = parseInt(this.netCashFlow[0].year5) ? parseInt(this.netCashFlow[0].year5):0
+                cashFlow[0] = parseInt(this.netCashFlow[0].year0) ? parseInt(this.netCashFlow[0].year0):0
+                cashFlow[1] = parseInt(this.netCashFlow[0].year1) ? parseInt(this.netCashFlow[0].year1):0
+                cashFlow[2] = parseInt(this.netCashFlow[0].year2) ? parseInt(this.netCashFlow[0].year2):0
+                cashFlow[3] = parseInt(this.netCashFlow[0].year3) ? parseInt(this.netCashFlow[0].year3):0
+                cashFlow[4] = parseInt(this.netCashFlow[0].year4) ? parseInt(this.netCashFlow[0].year4):0
+                cashFlow[5] = parseInt(this.netCashFlow[0].year5) ? parseInt(this.netCashFlow[0].year5):0
                 var discountRate = 0.1
                 var npv = 0
                 for(var t = 0; t <= 5; t++)
