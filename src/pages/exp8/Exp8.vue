@@ -560,27 +560,33 @@
             {
               switch (year){
                 case 0:
-                  this.Input[index].year0 = (parseInt(this.Input[index+1].year0)? parseInt(this.Input[index+1].year0):0) + 
-                                            (parseInt(this.Input[index+2].year0)? parseInt(this.Input[index+2].year0):0)
+                  var total =(parseInt(this.Input[index+1].year0)? parseInt(this.Input[index+1].year0):0) + 
+                                            (parseInt(this.Input[index+2].year0)? parseInt(this.Input[index+2].year0):0)
+                  this.Input[index].year0 = total?total:0
                   return this.Input[index].year0
                 case 1:
-                  var total = parseInt(this.Input[index+1].year1)+parseInt(this.Input[index+2].year1)
+                  var total =(parseInt(this.Input[index+1].year1)? parseInt(this.Input[index+1].year1):0) + 
+                                            (parseInt(this.Input[index+2].year1)? parseInt(this.Input[index+2].year1):0)
                   this.Input[index].year1 = total?total:0
                   return this.Input[index].year1
                 case 2:
-                  var total = parseInt(this.Input[index+1].year2)+parseInt(this.Input[index+2].year2)
+                  var total =(parseInt(this.Input[index+1].year2)? parseInt(this.Input[index+1].year2):0) + 
+                                            (parseInt(this.Input[index+2].year2)? parseInt(this.Input[index+2].year2):0)
                   this.Input[index].year2 = total?total:0
                   return this.Input[index].year2
                 case 3:
-                  var total = parseInt(this.Input[index+1].year3)+parseInt(this.Input[index+2].year3)
+                  var total =(parseInt(this.Input[index+1].year3)? parseInt(this.Input[index+1].year3):0) + 
+                                            (parseInt(this.Input[index+2].year3)? parseInt(this.Input[index+2].year3):0)
                   this.Input[index].year3 = total?total:0
                   return this.Input[index].year3
                 case 4:
-                  var total = parseInt(this.Input[index+1].year4)+parseInt(this.Input[index+2].year4)
+                  var total =(parseInt(this.Input[index+1].year4)? parseInt(this.Input[index+1].year4):0) + 
+                                            (parseInt(this.Input[index+2].year4)? parseInt(this.Input[index+2].year4):0)
                   this.Input[index].year4 = total?total:0
                   return this.Input[index].year4
                 case 5:
-                  var total = parseInt(this.Input[index+1].year5)+parseInt(this.Input[index+2].year5)
+                  var total =(parseInt(this.Input[index+1].year5)? parseInt(this.Input[index+1].year5):0) + 
+                                            (parseInt(this.Input[index+2].year5)? parseInt(this.Input[index+2].year5):0)
                   this.Input[index].year5 = total?total:0
                   return this.Input[index].year5
                 default:
