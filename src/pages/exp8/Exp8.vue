@@ -97,8 +97,11 @@
     <p class="content">请按照下列表格填写项目每年的现金流出：
     </p>
     <a-table :columns="columns_1" :data-source="Output">
-      <template #bodyCell="{ column, record, index }">
+    <template #bodyCell="{ column, record, index }">
       <template v-if="column.dataIndex === 'year0'">
+        <template v-if="record.project === '现金流出'">
+          {{ d(index, 0) }}
+        </template>
         <template v-if="record.project === '直接人力成本'">
           <a-input v-model:value="record.year0" style="width:100px;" />
         </template>
@@ -117,6 +120,9 @@
       </template>
 
       <template v-if="column.dataIndex === 'year1'">
+        <template v-if="record.project === '现金流出'">
+          {{ d(index, 1) }}
+        </template>
         <template v-if="record.project === '直接人力成本'">
           <a-input v-model:value="record.year1" style="width:100px;" />
         </template>
@@ -135,6 +141,9 @@
       </template>
 
       <template v-if="column.dataIndex === 'year2'">
+        <template v-if="record.project === '现金流出'">
+          {{ d(index, 2) }}
+        </template>
         <template v-if="record.project === '直接人力成本'">
           <a-input v-model:value="record.year2" style="width:100px;" />
         </template>
@@ -153,6 +162,9 @@
       </template>
 
       <template v-if="column.dataIndex === 'year3'">
+        <template v-if="record.project === '现金流出'">
+          {{ d(index, 3) }}
+        </template>
         <template v-if="record.project === '直接人力成本'">
           <a-input v-model:value="record.year3" style="width:100px;" />
         </template>
@@ -171,6 +183,9 @@
       </template>
 
       <template v-if="column.dataIndex === 'year4'">
+        <template v-if="record.project === '现金流出'">
+          {{ d(index, 4) }}
+        </template>
         <template v-if="record.project === '直接人力成本'">
           <a-input v-model:value="record.year4" style="width:100px;" />
         </template>
@@ -189,6 +204,9 @@
       </template>
 
       <template v-if="column.dataIndex === 'year5'">
+        <template v-if="record.project === '现金流出'">
+          {{ d(index, 5) }}
+        </template>
         <template v-if="record.project === '直接人力成本'">
           <a-input v-model:value="record.year5" style="width:100px;" />
         </template>
@@ -216,58 +234,97 @@
   净现金流量现值为现金流入扣除现金流出的净额按照一定的折现率折现至评估时点的现值，净现金流量总现值是指未来各期现金净流量的现值之和，即未来现金流入现值与未来现金流出现值差额，也称为净现值。
   </p>
   <p class="formula">第n年的净现金流量现值=第n年的净现金流量×现值系数  </p>
-    <a-table :columns="columns_1" :data-source="netCashFlow">
+  <a-table :columns="columns_1" :data-source="netCashFlow">
         <template #bodyCell="{ column,record,index}">
             <template v-if="column.dataIndex === 'year0'">
               <template v-if="record.project === '净现金流量'">
                 <a-input v-model:value="record.year0" style="width:100px;"/>
               </template> 
+              <template v-if="record.project === '累计净现金流量'">
+                {{c1(index,0)}}
+              </template> 
               <template v-if="record.project === '净现金流量(现值)'">
                 <a-input v-model:value="record.year0" style="width:100px;"/>
               </template> 
+              <template v-if="record.project === '累计净现金流量(现值)'">
+                {{c2(index,0)}}
+              </template> 
             </template>
+
             <template v-if="column.dataIndex === 'year1'">
               <template v-if="record.project === '净现金流量'">
                 <a-input v-model:value="record.year1" style="width:100px;"/>
               </template> 
+              <template v-if="record.project === '累计净现金流量'">
+                {{c1(index,1)}}
+              </template> 
               <template v-if="record.project === '净现金流量(现值)'">
                 <a-input v-model:value="record.year1" style="width:100px;"/>
               </template> 
+              <template v-if="record.project === '累计净现金流量(现值)'">
+                {{c2(index,1)}}
+              </template>
             </template>
+
             <template v-if="column.dataIndex === 'year2'">
               <template v-if="record.project === '净现金流量'">
                 <a-input v-model:value="record.year2" style="width:100px;"/>
               </template> 
+              <template v-if="record.project === '累计净现金流量'">
+                {{c1(index,2)}}
+              </template>
               <template v-if="record.project === '净现金流量(现值)'">
                 <a-input v-model:value="record.year2" style="width:100px;"/>
               </template> 
+              <template v-if="record.project === '累计净现金流量(现值)'">
+                {{c2(index,2)}}
+              </template>
             </template>
 
             <template v-if="column.dataIndex === 'year3'">
               <template v-if="record.project === '净现金流量'">
                 <a-input v-model:value="record.year3" style="width:100px;"/>
               </template> 
+              <template v-if="record.project === '累计净现金流量'">
+                {{c1(index,3)}}
+              </template>
               <template v-if="record.project === '净现金流量(现值)'">
                 <a-input v-model:value="record.year3" style="width:100px;"/>
               </template> 
+              <template v-if="record.project === '累计净现金流量(现值)'">
+                {{c2(index,3)}}
+              </template>
             </template>
 
             <template v-if="column.dataIndex === 'year4'">
               <template v-if="record.project === '净现金流量'">
                 <a-input v-model:value="record.year4" style="width:100px;"/>
               </template> 
+              <template v-if="record.project === '累计净现金流量'">
+                {{c1(index,4)}}
+              </template>
               <template v-if="record.project === '净现金流量(现值)'">
                 <a-input v-model:value="record.year4" style="width:100px;"/>
               </template> 
+              <template v-if="record.project === '累计净现金流量(现值)'">
+                {{c2(index,4)}}
+              </template>
+
             </template>
 
             <template v-if="column.dataIndex === 'year5'">
               <template v-if="record.project === '净现金流量'">
                 <a-input v-model:value="record.year5" style="width:100px;"/>
               </template> 
+              <template v-if="record.project === '累计净现金流量'">
+                {{c1(index,5)}}
+              </template>
               <template v-if="record.project === '净现金流量(现值)'">
                 <a-input v-model:value="record.year5" style="width:100px;"/>
               </template> 
+              <template v-if="record.project === '累计净现金流量(现值)'">
+                {{c2(index,5)}}
+              </template>
             </template>
         </template> 
     </a-table>
@@ -589,6 +646,124 @@
                                             (parseInt(this.Input[index+2].year5)? parseInt(this.Input[index+2].year5):0)
                   this.Input[index].year5 = total?total:0
                   return this.Input[index].year5
+                default:
+                  break
+              }
+            }
+          },
+          d() {
+      return function (index, year) {
+              switch (year) {
+                case 0:
+                  this.Output[index].year0 = (parseInt(this.Output[index + 1].year0) ? parseInt(this.Output[index + 1].year0) : 0) +
+                    (parseInt(this.Output[index + 2].year0) ? parseInt(this.Output[index + 2].year0) : 0) +
+                    (parseInt(this.Output[index + 3].year0) ? parseInt(this.Output[index + 3].year0) : 0) +
+                    (parseInt(this.Output[index + 4].year0) ? parseInt(this.Output[index + 4].year0) : 0) +
+                    (parseInt(this.Output[index + 5].year0) ? parseInt(this.Output[index + 5].year0) : 0)
+                  return this.Output[index].year0
+                case 1:
+                this.Output[index].year1 = (parseInt(this.Output[index + 1].year1) ? parseInt(this.Output[index + 1].year1) : 0) +
+                    (parseInt(this.Output[index + 2].year1) ? parseInt(this.Output[index + 2].year1) : 0) +
+                    (parseInt(this.Output[index + 3].year1) ? parseInt(this.Output[index + 3].year1) : 0) +
+                    (parseInt(this.Output[index + 4].year1) ? parseInt(this.Output[index + 4].year1) : 0) +
+                    (parseInt(this.Output[index + 5].year1) ? parseInt(this.Output[index + 5].year1) : 0)
+                  return this.Output[index].year1
+                case 2:
+                this.Output[index].year2 = (parseInt(this.Output[index + 1].year2) ? parseInt(this.Output[index + 1].year2) : 0) +
+                    (parseInt(this.Output[index + 2].year2) ? parseInt(this.Output[index + 2].year2) : 0) +
+                    (parseInt(this.Output[index + 3].year2) ? parseInt(this.Output[index + 3].year2) : 0) +
+                    (parseInt(this.Output[index + 4].year2) ? parseInt(this.Output[index + 4].year2) : 0) +
+                    (parseInt(this.Output[index + 5].year2) ? parseInt(this.Output[index + 5].year2) : 0)
+                  return this.Output[index].year2
+                case 3:
+                this.Output[index].year3 = (parseInt(this.Output[index + 1].year3) ? parseInt(this.Output[index + 1].year3) : 0) +
+                    (parseInt(this.Output[index + 2].year3) ? parseInt(this.Output[index + 2].year3) : 0) +
+                    (parseInt(this.Output[index + 3].year3) ? parseInt(this.Output[index + 3].year3) : 0) +
+                    (parseInt(this.Output[index + 4].year3) ? parseInt(this.Output[index + 4].year3) : 0) +
+                    (parseInt(this.Output[index + 5].year3) ? parseInt(this.Output[index + 5].year3) : 0)
+                  return this.Output[index].year3
+                case 4:
+                this.Output[index].year4 = (parseInt(this.Output[index + 1].year4) ? parseInt(this.Output[index + 1].year4) : 0) +
+                    (parseInt(this.Output[index + 2].year4) ? parseInt(this.Output[index + 2].year4) : 0) +
+                    (parseInt(this.Output[index + 3].year4) ? parseInt(this.Output[index + 3].year4) : 0) +
+                    (parseInt(this.Output[index + 4].year4) ? parseInt(this.Output[index + 4].year4) : 0) +
+                    (parseInt(this.Output[index + 5].year4) ? parseInt(this.Output[index + 5].year4) : 0)
+                  return this.Output[index].year4
+                case 5:
+                this.Output[index].year5 = (parseInt(this.Output[index + 1].year5) ? parseInt(this.Output[index + 1].year5) : 0) +
+                    (parseInt(this.Output[index + 2].year5) ? parseInt(this.Output[index + 2].year5) : 0) +
+                    (parseInt(this.Output[index + 3].year5) ? parseInt(this.Output[index + 3].year5) : 0) +
+                    (parseInt(this.Output[index + 4].year5) ? parseInt(this.Output[index + 4].year5) : 0) +
+                    (parseInt(this.Output[index + 5].year5) ? parseInt(this.Output[index + 5].year5) : 0)
+                  return this.Output[index].year5
+                default:
+                  break
+              }
+             }
+          },
+          c1(){
+            return function(index,year)
+            {
+              switch (year){
+                case 0:
+                  var total =(parseInt(this.netCashFlow[0].year0)? parseInt(this.netCashFlow[0].year0):0) 
+                  this.netCashFlow[index].year0 = parseInt(this.netCashFlow[0].year0)?total:0
+                  return this.netCashFlow[index].year0
+                case 1:
+                  var total =(parseInt(this.netCashFlow[0].year0)? parseInt(this.netCashFlow[0].year0):0) + (parseInt(this.netCashFlow[0].year1)? parseInt(this.netCashFlow[0].year1):0) 
+                  this.netCashFlow[index].year1 = parseInt(this.netCashFlow[0].year1)?total:0
+                  return this.netCashFlow[index].year1
+                case 2:
+                  var total =(parseInt(this.netCashFlow[0].year0)? parseInt(this.netCashFlow[0].year0):0) +(parseInt(this.netCashFlow[0].year1)? parseInt(this.netCashFlow[0].year1):0) + (parseInt(this.netCashFlow[0].year2)? parseInt(this.netCashFlow[0].year2):0) 
+                  this.netCashFlow[index].year2 = parseInt(this.netCashFlow[0].year2)?total:0
+                  return this.netCashFlow[index].year2
+                case 3:
+                  var total =(parseInt(this.netCashFlow[0].year0)? parseInt(this.netCashFlow[0].year0):0) +(parseInt(this.netCashFlow[0].year1)? parseInt(this.netCashFlow[0].year1):0) + (parseInt(this.netCashFlow[0].year2)? parseInt(this.netCashFlow[0].year2):0) + (parseInt(this.netCashFlow[0].year3)? parseInt(this.netCashFlow[0].year3):0) 
+                  this.netCashFlow[index].year3 = parseInt(this.netCashFlow[0].year3)?total:0
+                  return this.netCashFlow[index].year3
+                case 4:
+                  var total =(parseInt(this.netCashFlow[0].year0)? parseInt(this.netCashFlow[0].year0):0) + (parseInt(this.netCashFlow[0].year1)? parseInt(this.netCashFlow[0].year1):0) + (parseInt(this.netCashFlow[0].year2)? parseInt(this.netCashFlow[0].year2):0) + (parseInt(this.netCashFlow[0].year3)? parseInt(this.netCashFlow[0].year3):0) + (parseInt(this.netCashFlow[0].year4)? parseInt(this.netCashFlow[0].year4):0)
+                  this.netCashFlow[index].year4 = parseInt(this.netCashFlow[0].year4)?total:0
+                  return this.netCashFlow[index].year4
+                case 5:
+                  var total =(parseInt(this.netCashFlow[0].year0)? parseInt(this.netCashFlow[0].year0):0) + (parseInt(this.netCashFlow[0].year1)? parseInt(this.netCashFlow[0].year1):0) + (parseInt(this.netCashFlow[0].year2)? parseInt(this.netCashFlow[0].year2):0) + (parseInt(this.netCashFlow[0].year3)? parseInt(this.netCashFlow[0].year3):0) + (parseInt(this.netCashFlow[0].year4)? parseInt(this.netCashFlow[0].year4):0) + (parseInt(this.netCashFlow[0].year5)? parseInt(this.netCashFlow[0].year5):0)
+                  this.netCashFlow[index].year5 = parseInt(this.netCashFlow[0].year5)?total:0
+                  return this.netCashFlow[index].year5
+
+                default:
+                  break
+              }
+            }
+          },
+          c2(){
+            return function(index,year)
+            {
+              switch (year){
+                case 0:
+                  var total =(parseInt(this.netCashFlow[2].year0)? parseInt(this.netCashFlow[2].year0):0) 
+                  this.netCashFlow[index].year0 = parseInt(this.netCashFlow[2].year0)?total:0
+                  return this.netCashFlow[index].year0
+                case 1:
+                  var total =(parseInt(this.netCashFlow[2].year0)? parseInt(this.netCashFlow[2].year0):0) + (parseInt(this.netCashFlow[2].year1)? parseInt(this.netCashFlow[2].year1):0) 
+                  this.netCashFlow[index].year1 = parseInt(this.netCashFlow[2].year1)?total:0
+                  return this.netCashFlow[index].year1
+                case 2:
+                  var total =(parseInt(this.netCashFlow[2].year0)? parseInt(this.netCashFlow[2].year0):0) +(parseInt(this.netCashFlow[2].year1)? parseInt(this.netCashFlow[2].year1):0) + (parseInt(this.netCashFlow[2].year2)? parseInt(this.netCashFlow[2].year2):0) 
+                  this.netCashFlow[index].year2 = parseInt(this.netCashFlow[2].year2)?total:0
+                  return this.netCashFlow[index].year2
+                case 3:
+                  var total =(parseInt(this.netCashFlow[2].year0)? parseInt(this.netCashFlow[2].year0):0) +(parseInt(this.netCashFlow[2].year1)? parseInt(this.netCashFlow[2].year1):0) + (parseInt(this.netCashFlow[2].year2)? parseInt(this.netCashFlow[2].year2):0) + (parseInt(this.netCashFlow[2].year3)? parseInt(this.netCashFlow[2].year3):0) 
+                  this.netCashFlow[index].year3 = parseInt(this.netCashFlow[2].year3)?total:0
+                  return this.netCashFlow[index].year3
+                case 4:
+                  var total =(parseInt(this.netCashFlow[2].year0)? parseInt(this.netCashFlow[2].year0):0) + (parseInt(this.netCashFlow[2].year1)? parseInt(this.netCashFlow[2].year1):0) + (parseInt(this.netCashFlow[2].year2)? parseInt(this.netCashFlow[2].year2):0) + (parseInt(this.netCashFlow[2].year3)? parseInt(this.netCashFlow[2].year3):0) + (parseInt(this.netCashFlow[2].year4)? parseInt(this.netCashFlow[2].year4):0)
+                  this.netCashFlow[index].year4 = parseInt(this.netCashFlow[2].year4)?total:0
+                  return this.netCashFlow[index].year4
+                case 5:
+                  var total =(parseInt(this.netCashFlow[2].year0)? parseInt(this.netCashFlow[2].year0):0) + (parseInt(this.netCashFlow[2].year1)? parseInt(this.netCashFlow[2].year1):0) + (parseInt(this.netCashFlow[2].year2)? parseInt(this.netCashFlow[2].year2):0) + (parseInt(this.netCashFlow[2].year3)? parseInt(this.netCashFlow[2].year3):0) + (parseInt(this.netCashFlow[2].year4)? parseInt(this.netCashFlow[2].year4):0) + (parseInt(this.netCashFlow[2].year5)? parseInt(this.netCashFlow[2].year5):0)
+                  this.netCashFlow[index].year5 = parseInt(this.netCashFlow[2].year5)?total:0
+                  return this.netCashFlow[index].year5
+
                 default:
                   break
               }
