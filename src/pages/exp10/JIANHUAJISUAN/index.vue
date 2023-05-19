@@ -325,14 +325,11 @@
   <h3>5.项目指标</h3>
   <p class="content">根据所提取的财务评价所需基础数据进行项目财务分析，重在考察项目盈利能力是否能够满足要求。编制项目资本金现金流量表，计算项目资本金财务内部收益率IRR、净现值NPV以及动态投资回收期（年），考察项目资本金可获得的收益水平。
   </p>
-  <p class="content">1. 净现值NPV是指按照一定的折现率（通常为基准折现率ic），将各年的净现金流量折现到同一时点（通常是期初时点）的现值之和,公式如下：</p>
-  <img class="formula" src="src\pages\exp10\JIANHUAJISUAN\img\NPV.png">
-  <p class="content">（CI-CO）t为第t年的净现金流量，n为方案寿命期，ic为设定的折现率（基准收益率）。</p>
-  <p class="content">2. 项目资本金财务内部收益率IRR是指在整个计算期内净现值等于零时所对应的折现率,公式如下：</p>
-  <img class="formula" src="src\pages\exp10\JIANHUAJISUAN\img\IRR.png">
+  <p class="content">1. 项目资本金财务内部收益率IRR是指在整个计算期内净现值等于零时所对应的折现率,公式如下：</p>
   <p class="content">其中，IRR为内部收益率，（CI-CO）t为第t年净现金流量，n为方案寿命期。</p>
+  <p class="content">2. 净现值NPV是指按照一定的折现率（通常为基准折现率ic），将各年的净现金流量折现到同一时点（通常是期初时点）的现值之和,公式如下：</p>
+  <p class="content">（CI-CO）t为第t年的净现金流量，n为方案寿命期，ic为设定的折现率（基准收益率）。</p>
   <p class="content">3. 动态投资回收期（年）是指按照设定的基准收益率ic回收全部投资所需的时间,公式如下：</p>
-  <img class="formula" src="src\pages\exp10\JIANHUAJISUAN\img\DPP.png">
   <p class="content">其中，DPP为动态投资回收期、（CI-CO）t为第t年净现金流量，ic为设定的基准收益率。</p>
   <p class="content">根据计算，本项目的财务指标如下</p>
   <a-table :dataSource="Index" :columns="columns_2" >
@@ -786,14 +783,71 @@
         },
         irr(){
           return function()
-          {
-            return this.Index[1].value = 0
+          {           
+            var npv = 0  //净现值
+            var irr = 0.1  //初始irr值设为0.1
+            var count = 0  //计数
+            const epsilon =  0.0001  //迭代精度
+            const max_iter = 1000  //最大迭代次数
+
+            const cashFlow = [0,0,0,0,0,0]  //净现金流量
+            cashFlow[0] = parseInt(this.netCashFlow[0].year0) ? parseInt(this.netCashFlow[0].year0):0
+            cashFlow[1] = parseInt(this.netCashFlow[0].year1) ? parseInt(this.netCashFlow[0].year1):0
+            cashFlow[2] = parseInt(this.netCashFlow[0].year2) ? parseInt(this.netCashFlow[0].year2):0
+            cashFlow[3] = parseInt(this.netCashFlow[0].year3) ? parseInt(this.netCashFlow[0].year3):0
+            cashFlow[4] = parseInt(this.netCashFlow[0].year4) ? parseInt(this.netCashFlow[0].year4):0
+            cashFlow[5] = parseInt(this.netCashFlow[0].year5) ? parseInt(this.netCashFlow[0].year5):0
+            if(!(parseInt(this.netCashFlow[0].year0) && parseInt(this.netCashFlow[0].year1) && parseInt(this.netCashFlow[0].year2) && parseInt(this.netCashFlow[0].year3) && parseInt(this.netCashFlow[0].year4) && parseInt(this.netCashFlow[0].year5)))
+              return this.Index[1].value = 0
+
+            do{
+              count++
+              npv=0
+              for(var t = 0; t <= 5; t++)
+                npv += cashFlow[t] / Math.pow(1 + irr, t);
+              if(npv > 0)
+                irr += epsilon
+              else if(npv < 0)
+                irr -= epsilon
+              else
+                break  
+
+            }while(Math.abs(npv) > epsilon && count < max_iter)
+
+            this.Index[1].value = (irr * 100).toFixed(2)  //返回百分比值
+            
+            return this.Index[1].value 
           }
         },
         dpp(){
           return function()
           {
-            return this.Index[2].value = 0
+            var npv = 0
+            var dpp = 0
+            const discountRate = 0.1
+
+            const cashFlow = [0,0,0,0,0,0]  //净现金流量
+            cashFlow[0] = parseInt(this.netCashFlow[0].year0) ? parseInt(this.netCashFlow[0].year0):0
+            cashFlow[1] = parseInt(this.netCashFlow[0].year1) ? parseInt(this.netCashFlow[0].year1):0
+            cashFlow[2] = parseInt(this.netCashFlow[0].year2) ? parseInt(this.netCashFlow[0].year2):0
+            cashFlow[3] = parseInt(this.netCashFlow[0].year3) ? parseInt(this.netCashFlow[0].year3):0
+            cashFlow[4] = parseInt(this.netCashFlow[0].year4) ? parseInt(this.netCashFlow[0].year4):0
+            cashFlow[5] = parseInt(this.netCashFlow[0].year5) ? parseInt(this.netCashFlow[0].year5):0
+            if(!(parseInt(this.netCashFlow[0].year0) && parseInt(this.netCashFlow[0].year1) && parseInt(this.netCashFlow[0].year2) && parseInt(this.netCashFlow[0].year3) && parseInt(this.netCashFlow[0].year4) && parseInt(this.netCashFlow[0].year5)))
+              return this.Index[2].value = 0
+
+            for(var t = 0; t <= 5; t++)
+            {
+                npv += cashFlow[t] / Math.pow(1 + discountRate, t);
+                if(npv >= 0)
+                {
+                  dpp = t  - npv / cashFlow[t] / Math.pow(1 + discountRate, t)
+                  break
+                }
+            }
+
+            this.Index[2].value = dpp.toFixed(2)
+            return this.Index[2].value
           }
         },
         },
