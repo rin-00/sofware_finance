@@ -1,1 +1,1 @@
-Group 41
+Group 41 of Virtual Experiment Plattform
